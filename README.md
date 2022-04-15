@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Json-Server
 
-Run `json-server --watch db.json` to up json-serve. This will provade quick back-end for prototyping and mocking some data.
+Run `json-server --watch db.json` to up json-serve. This will provade a quick back-end for prototyping and mocking some data.
 
 ## Development server
 
