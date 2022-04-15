@@ -1,0 +1,183 @@
+ <div>
+  <h2 class="text-2xl text-gray-500 font-bold">Configuração de Evento</h2>
+
+  <div>
+  <div class="relative overflow-auto flex items-center justify-center p-4 sm:p-4">
+    <div class="col-span-12">
+      <div>
+        <div class="flex justify-end" style="margin-bottom: 10px;">
+          <div>
+            <select
+              class=" w-40 px-4 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-blue-500 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            >
+              <option selected>Status</option>
+              <option>Concluído</option>
+              <option>Em Andamento</option>
+              <option>Não Iniciada</option>
+            </select>
+          </div>
+        
+          <div class=" flex items-center justify-center" style="margin: 0 10px;">
+            <input
+             type="text" class=" border rounded border-blue-600 px-4 py-2 w-60 " placeholder="Search...">
+             <button class="px-3 py-2 rounded" style="background-color: rgb(171, 159, 241); margin-left: 10px;">
+              <svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24">
+                  <path
+                      d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
+              </svg>
+          </button>
+          </div>
+        </div>
+        <table  class="min-w-full bg-white border border-blue-600" >
+          <thead>
+            <tr>
+              <th class=" text-left px-8 py-4">Código/Nome</th>
+              <th class=" text-left px-8 py-4">Responsável</th>
+              <th class=" text-left px-8 py-4">
+                Status da Configuração
+              </th>
+              <th class=" text-left px-8 py-4">
+                Última Atualização
+              </th>
+              <th class=" text-left px-8 py-4">Options</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+           
+            <tr
+              class="border border-blue-600 rounded"
+              *ngFor="let event of page.content "
+            >
+              <td class="px-8 py-4">{{ event.nmEvento }}</td>
+              <td class="px-8 py-4">{{ event.nmSolicitante }}</td>
+              <td class="px-8 py-4">{{ event.status }}</td>
+              <td class="px-8 py-4">
+                {{ event.dtEvento | date: "dd/MM/yyyy" }}
+              </td>
+              <td>
+                <button
+                  [routerLink]="['/events/acessar', event.id]"
+                  class=" underline bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                >
+                  Acessar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          
+        </table>
+        <mat-paginator  class="border border-solid border-blue-600" *ngIf="page.totalElements>0"
+          [length]="page.totalElements" 
+          [pageSize]="3" 
+          [pageSizeOptions]="[3,5,8,10]"
+          (page)="pageEvent = $event; listarEventos()">
+
+        </mat-paginator>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+ <!-- <div class="flex flex-col border  h-full p-10 bg-white">
+  
+  <h2 class="title-page mt-10">
+      <i class="fa fa-calendar fa-2x ml-2 mr-2" style="font-size: 22px;" aria-hidden="true"> </i>
+      Configurar Distribuição
+  </h2>
+
+  <form class="mt-10">
+      <div class="w-1/6  border border-solid border-blue-500 rounded">
+          <input type="text"         
+                 placeholder="Código do Produto/Nome do Evento">
+          <button class="btn-search">
+              <i class="fa fa-search fa-2x ml-2 mr-2" style="font-size: 16px;" aria-hidden="true"> </i>
+          </button>
+      </div>
+  </form>
+
+  
+  <div class="table-result border border-solid mt-10" style="font-size: 14px">
+      <div class="flex border border-blue-500 border-solid">
+          <div class="title-col-table md:w-3/12 flex justify-between items-center cursor-pointer">
+              Código/Nome do evento
+              <i class="fa fa-chevron-down" style="font-size: 14px;" aria-hidden="true"> </i>
+          </div>
+          <div class="title-col-table md:w-3/12 flex justify-between items-center cursor-pointer">
+              Responsável
+              <i class="fa fa-chevron-down" style="font-size: 14px;" aria-hidden="true"> </i>
+          </div>
+          <div class="title-col-table md:w-2/12 flex justify-between items-center cursor-pointer">
+              <div class="flex items-center">
+                  Status da configuração
+                  <div class="info-plus">i</div>
+              </div>
+              <i class="fa fa-chevron-down" style="font-size: 14px;" aria-hidden="true"> </i>
+          </div>
+          <div class="title-col-table md:w-2/12 flex justify-between items-center cursor-pointer">
+              Data do Evento
+              <i class="fa fa-chevron-down" style="font-size: 14px;" aria-hidden="true"> </i>
+          </div>
+          <div class="title-col-table md:w-1/12 flex justify-between items-center cursor-pointer">
+              Ação
+          </div>
+      </div>
+
+      <div class="flex border border-blue-500" *ngFor="let event of filteredEvents">
+          <div class="title-col-table md:w-3/12 flex justify-between items-center">
+            {{event.id}}/{{event.nmEvento}}
+          </div>
+          <div class="title-col-table md:w-3/12 flex justify-between items-center">
+              123123
+          </div>
+          <div class="title-col-table md:w-2/12 flex justify-between items-center">
+              <div class="flex items-center">
+                  121213
+              </div>
+          </div>
+          <div class="title-col-table md:w-2/12 flex justify-between items-center">
+              asdasd
+          </div>
+          <div class="title-col-table md:w-1/12 flex justify-between items-center">
+              <button class="btn-accessar" >
+                  Acessar
+              </button>
+          </div>
+      </div>
+
+      <div class="flex border border-blue-500 footer-table justify-between">
+          <div class="w-1/3"></div>
+          <div class="w-1/3 flex  justify-center items-center">
+              Página
+              <select class="select-table">
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+              </select>
+              1 - 5 de 20
+          </div>
+          <div class="w-1/3 flex justify-end items-center">
+                              <div class="flex items-center cursor-pointer" *ngIf="page > 1">
+                                  <div style="border-left: 3px solid; width:3px; height: 14px"></div>
+                                      <i class="fa fa-chevron-left fa-2x mr-4" style="font-size: 14px; margin-left: 2px" aria-hidden="true"> </i>
+
+                             </div>-->
+            <!--   <i class="fa fa-chevron-left fa-2x ml-4 mr-4 cursor-pointer" style="font-size: 14px;" aria-hidden="true"
+                 > </i>
+              <i class="fa fa-chevron-right fa-2x ml-4 mr-4 cursor-pointer" style="font-size: 14px;"
+                 aria-hidden="true" > </i>
+                              <div class="flex items-center cursor-pointer mr-4" *ngIf="next">
+                                  <i class="fa fa-chevron-right fa-2x ml-2" style="font-size: 14px; margin-right: 2px" aria-hidden="true"> </i>
+                                  <div style="border-left: 3px solid; width:3px; height: 14px"></div>
+
+                              </div>
+          </div>
+      </div>
+
+  </div>
+
+</div>  -->

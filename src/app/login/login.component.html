@@ -1,0 +1,41 @@
+<div class="container-export">
+  
+    <div class="container-login">
+    <div >
+      <img src="../../assets/login-image.png" alt="descrição_da_imagem">  
+    </div>
+    
+    <div class="subtitulo-login">
+      Gestão de Eventos
+    </div>
+  
+    <mat-card>
+      <mat-card-content>
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+            <h2>Login</h2>
+            <mat-error *ngIf="!loginValid">
+              The username and password were not recognized
+            </mat-error>
+            <mat-form-field>
+              <input  placeholder="Email" [(ngModel)]="username" name="username"   class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              >
+              <mat-error>
+                Please provide a valid email address
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input  type="password" placeholder="Password" [(ngModel)]="password" name="password"  class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              >
+              <mat-error>
+                Please provide a valid password
+              </mat-error>
+            </mat-form-field>
+            <div class="button-login-entrar">
+              <button  [disabled]="!loginForm.form.valid"  class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              > Entrar</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+  </div>
+  </div>
