@@ -2,7 +2,9 @@
 
 export interface PageQuery{
     pageNumber: number,
-    pageSize: number
+    pageSize: number,
+    status: string,
+    search: string
 }
 
 export interface QueryBuilder{
@@ -38,6 +40,11 @@ export class PageRequest implements QueryBuilder{
         
         buildPageQueryMap.set("_page",`${this.pageQuery.pageNumber+1}`);
         buildPageQueryMap.set("_limit",`${this.pageQuery.pageSize}`);
+
+        if(this.pageQuery.status != '')
+            buildPageQueryMap.set("status",`${this.pageQuery.status}`);
+        if(this.pageQuery.search != '')    
+            buildPageQueryMap.set("q",`${this.pageQuery.search}`);
 
         return buildPageQueryMap;
 

@@ -15,6 +15,15 @@ export class EventListComponent implements OnInit{
     page: Page<Evento>  = new Page([],0);
     pageEvent: PageEvent;
 
+    search:string = "";
+    status:string = "";
+
+    options = [
+        { name: "Concluido", value: "Concluido" },
+        { name: "Em Andamento", value: "Em Andamento" },
+        { name: "Não iniciado", value: "Não iniciado" }
+      ]
+
 
     filteredEvents$: Observable<Evento []>;
     _filterBy: string;
@@ -28,13 +37,21 @@ export class EventListComponent implements OnInit{
         this.listarEventos();
     }
 
-    listarEventos(){
+    listarEventos( reset:boolean = false){
+
+        if(reset && this.pageEvent){
+            this.pageEvent.pageIndex = 0;
+        }    
+
         let queryAdicional;
+
         this.eventoService.listarTodos(
             new PageRequest(
                 {
                     pageNumber: this.pageEvent ? this.pageEvent.pageIndex: 0,
-                    pageSize: this.pageEvent ? this.pageEvent.pageSize: 3
+                    pageSize: this.pageEvent ? this.pageEvent.pageSize: 3,
+                    search: this.search ? this.search: '',
+                    status: this.status ? this.status:''
                 },
                 queryAdicional
             )
@@ -49,9 +66,6 @@ export class EventListComponent implements OnInit{
             
         );
     }
-
-    
-
     formatDate(d='') {
         if (d) {
             return (moment(d).locale('pt-br').format('DD/MM/YYYY hh:mm'));
@@ -61,10 +75,10 @@ export class EventListComponent implements OnInit{
 
     }
    
-   /* set filter(value: string){
+    /*  set filter(value: string){
         this._filterBy = value;
 
-        this.filteredEvents$ = this.events$.pipe(map(
+        this.page = this.page.content. .pipe(map(
             evento => evento.filter(
             (evento: Evento) => (evento.nmEvento.toLocaleLowerCase()
                                        .indexOf(this._filterBy.toLocaleLowerCase()) > -1) ||
@@ -74,6 +88,7 @@ export class EventListComponent implements OnInit{
 
     get filter(){
         return this._filterBy;
-    }  */
+    }    */
     
 }
+

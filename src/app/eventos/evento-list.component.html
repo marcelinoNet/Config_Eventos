@@ -8,19 +8,21 @@
         <div class="flex justify-end" style="margin-bottom: 10px;">
           <div>
             <select
+              [(ngModel)]="status"
+               
               class=" w-40 px-4 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-blue-500 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             >
-              <option selected>Status</option>
-              <option>Concluído</option>
-              <option>Em Andamento</option>
-              <option>Não Iniciada</option>
+              <option *ngFor=" let opt of options" [value]="opt.value">{{opt.name}}</option>
+              
+             
             </select>
           </div>
         
           <div class=" flex items-center justify-center" style="margin: 0 10px;">
             <input
+            [(ngModel)]="search"
              type="text" class=" border rounded border-blue-600 px-4 py-2 w-60 " placeholder="Search...">
-             <button class="px-3 py-2 rounded" style="background-color: rgb(171, 159, 241); margin-left: 10px;">
+             <button (click)="listarEventos(true)" class="px-3 py-2 rounded" style="background-color: rgb(171, 159, 241); margin-left: 10px;">
               <svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24">
                   <path
