@@ -107,7 +107,7 @@
     },
     {
       "id": 6,
-      "status": "Não iniciada",
+      "status": "Não iniciado",
       "nmEvento": "GGG",
       "nmSolicitante": "GGG",
       "dtEvento": "May 13, 2022",
@@ -128,7 +128,7 @@
     },
     {
       "id": 7,
-      "status": "Não inciada",
+      "status": "Não iniciado",
       "nmEvento": "Anuncio nova EXP",
       "nmSolicitante": "GGG",
       "dtEvento": "May 02, 2022",
@@ -149,7 +149,7 @@
     },
     {
       "id": 8,
-      "status": "Não Iniciada",
+      "status": "Não iniciado",
       "nmEvento": "New EXP",
       "nmSolicitante": "WOW",
       "dtEvento": "july 13, 2022",
